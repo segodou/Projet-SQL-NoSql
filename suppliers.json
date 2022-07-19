@@ -1,0 +1,121 @@
+{
+    "no_supplier": "1",
+    "firstname_sup": "Dexter",
+    "surname_sup": "DENIGER",
+    "phone_sup": "645415424",
+    "adress": {
+		"street": "RUE DES PUCELLES",
+		"city": "STRASBOURG",
+		"postal_code": "67000",
+		"country": "FRANCE"
+	}
+}
+{
+    "no_supplier": "2",
+    "firstname_sup": "Porter",
+    "surname_sup": "BENJAMIN",
+    "phone_sup": "154427873",
+    "adress": {
+		"street": "RUE DES PUCELLES",
+		"city": "STRASBOURG",
+		"postal_code": "67000",
+		"country": "FRANCE"
+	}
+}
+{
+    "no_supplier": "3",
+    "firstname_sup": "Vallis",
+    "surname_sup": "PEPIN",
+    "phone_sup": "402279299",
+    "adress": {
+		"street": "PLACE MAGENTA",
+		"city": "NICE",
+		"postal_code": "6000",
+		"country": "FRANCE"
+	}
+}
+{
+    "no_supplier": "4",
+    "firstname_sup": "Maureen",
+    "surname_sup": "GAUDREAU",
+    "phone_sup": "634709334",
+    "adress": {
+		"street": "RUE DES PUCELLES",
+		"city": "STRASBOURG",
+		"postal_code": "67000",
+		"country": "FRANCE"
+	}
+}
+{
+    "no_supplier": "5",
+    "firstname_sup": "Arnaud",
+    "surname_sup": "DURANSEAU",
+    "phone_sup": "698004742",
+    "adress": {
+		"street": "RUE BRISEMICHE",
+		"city": "PARIS",
+		"postal_code": "75004",
+		"country": "FRANCE"
+	}
+}
+{
+    "no_supplier": "6",
+    "firstname_sup": "Anne",
+    "surname_sup": "HEBERT",
+    "phone_sup": "627815605",
+    "adress": {
+		"street": "RUE BRISEMICHE",
+		"city": "PARIS",
+		"postal_code": "75004",
+		"country": "FRANCE"
+	}
+}
+{
+    "no_supplier": "7",
+    "firstname_sup": "Lorraine",
+    "surname_sup": "BEAUJOLIE",
+    "phone_sup": "469742103",
+    "adress": {
+		"street": "59 BOULEVARD DE LA REPUBLIQUE",
+		"city": "AIX-EN-PROVENCE",
+		"postal_code": "13100",
+		"country": "FRANCE"
+	}
+}
+{
+    "no_supplier": "8",
+    "firstname_sup": "Delmare",
+    "surname_sup": "SOUCY",
+    "phone_sup": "674000114",
+    "adress": {
+		"street": "RUE DES EPERONNIERS",
+		"city": "BRUXELLES",
+		"postal_code": "1000",
+		"country": "BELGIQUE"
+	}
+}
+{
+    "no_supplier": "9",
+    "firstname_sup": "Charlot",
+    "surname_sup": "DOIRON",
+    "phone_sup": "638950147",
+    "adress": {
+		"street": "BOULEVARD VOLTAIRE",
+		"city": "PARIS",
+		"postal_code": "75011",
+		"country": "FRANCE"
+	}
+}
+{
+    "no_supplier": "10",
+    "firstname_sup": "Simone",
+    "surname_sup": "COUPART",
+    "phone_sup": "605004778",
+    "adress": {
+		"street": "BOULEVARD VOLTAIRE",
+		"city": "PARIS",
+		"postal_code": "75011",
+		"country": "FRANCE"
+	}
+}
+

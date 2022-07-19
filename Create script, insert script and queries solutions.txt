@@ -1,0 +1,1032 @@
+--------------------------------------------------------------------------
+-- Create script and insert script
+--------------------------------------------------------------------------
+
+-- Drop Database if exists
+DROP DATABASE IF EXISTS projet_restaurant;
+
+--
+-- Database: `projet_restaurant`
+--
+CREATE DATABASE projet_restaurant;
+USE projet_restaurant;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ADRESS`
+--
+
+CREATE TABLE ADRESS
+(
+    no_adress INT(11) NOT NULL,
+    street VARCHAR(255) DEFAULT NULL,
+    city VARCHAR(255) DEFAULT NULL,
+    postal_code VARCHAR(5) DEFAULT NULL,
+    country VARCHAR(255) DEFAULT NULL,
+	PRIMARY KEY (no_adress)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `ADRESS`
+--
+
+INSERT INTO ADRESS (no_adress, street, city, postal_code, country) VALUES
+(1, 'RUE DES PUCELLES', 'STRASBOURG', 67000, 'FRANCE'),
+(2, 'RUE BRISEMICHE', 'PARIS', 75004, 'FRANCE'),
+(3, 'RUE DES EPERONNIERS', 'BRUXELLES', 1000, 'BELGIQUE'),
+(4, 'BOULEVARD VOLTAIRE', 'PARIS', 75011, 'FRANCE'),
+(5, 'BOULEVARD DE WATERLOO', 'BRUXELLES', 1000, 'BELGIQUE'),
+(6, 'PLACE MAGENTA', 'NICE', 06000, 'FRANCE'),
+(7, 'IMPASSE ALBAREL MALAVASI', 'MARSEILLE', 13015, 'FRANCE'),
+(8, '59 BOULEVARD DE LA REPUBLIQUE', 'AIX-EN-PROVENCE', 13100, 'FRANCE'),
+(9, '31 RUE DE CRIMEE', 'MARSEILLE', 13003, 'FRANCE'),
+(10, 'RUE PASTORELLI', 'NICE', 06000, 'FRANCE');
+
+--
+-- Table structure for table `SUPPLIERS`
+--
+CREATE TABLE SUPPLIERS
+(
+    no_supplier INT(11) PRIMARY KEY NOT NULL,
+    firstname_sup VARCHAR(255) DEFAULT NULL,
+    surname_sup VARCHAR(255) DEFAULT NULL,
+    phone_sup VARCHAR(10) DEFAULT NULL,
+    no_adress INT(11) NOT NULL,
+    FOREIGN KEY (no_adress) REFERENCES adress(no_adress)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `SUPPLIERS`
+--
+INSERT INTO SUPPLIERS VALUES
+(1, 'Dexter', 'DENIGER', 0645415424, 1),
+(2, 'Porter', 'BENJAMIN', 0154427873, 1),
+(3, 'Vallis', 'PEPIN', 0402279299, 6),
+(4, 'Maureen', 'GAUDREAU', 0634709334, 1),
+(5, 'Arnaud', 'DURANSEAU', 0698004742, 2),
+(6, 'Anne', 'HEBERT', 0627815605, 2),
+(7, 'Lorraine', 'BEAUJOLIE', 0469742103, 8),
+(8, 'Delmare', 'SOUCY', 0674000114, 3),
+(9, 'Charlot', 'DOIRON', 0638950147, 4),
+(10, 'Simone', 'COUPART', 0605004778, 4);
+
+--
+-- Table structure for table `WINEGROWERS`
+--
+CREATE TABLE WINEGROWERS
+(
+    no_winegrower INT(11) PRIMARY KEY NOT NULL,
+    firstname_wg VARCHAR(255) DEFAULT NULL,
+    surname_wg VARCHAR(255) DEFAULT NULL,
+    phone_wg VARCHAR(10) DEFAULT NULL,
+    no_adress INT(11) NOT NULL ,
+    FOREIGN KEY (no_adress) REFERENCES adress(no_adress)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+--
+-- Dumping data for table `WINEGROWERS`
+--
+INSERT INTO WINEGROWERS VALUES
+(1, 'Nicole', 'POMERLEAU', 0625254788, 10),
+(2, 'Paul', 'PROBST', 0688747796, 9),
+(3, 'Doris', 'PAVLOVIC', 0601974863, 1),
+(4, 'Elissa', 'NYMAN', 0678910026, 4),
+(5, 'Farah', 'BREIJER', 0674635025, 8),
+(6, 'McKenzie', 'MILNE', 0687412369, 10),
+(7, 'Kevin', 'FOSSUM', 0688552548, 10),
+(8, 'Daisy', 'WHITTAKER', 0648963218, 5),
+(9, 'Fawzi', 'NAJJAR', 0631417877, 7),
+(10, 'Stig', 'JOHANSON', 0603000142, 10),
+(11, 'Jacques', 'LECLERC', 0707733990, 1),
+(12, 'Lavergne', 'BOULANGER', 0602222223, 4);
+
+--
+-- Table structure for table `WORKERS`
+--
+CREATE TABLE WORKERS
+(
+    no_worker INT(11) PRIMARY KEY NOT NULL,
+    firstname VARCHAR(255) DEFAULT NULL,
+    surname VARCHAR(255) DEFAULT NULL,
+    phone VARCHAR(10) DEFAULT NULL,
+    gender VARCHAR(6) DEFAULT NULL,
+    no_adress INT(11) NOT NULL,
+    FOREIGN KEY (no_adress) REFERENCES adress(no_adress)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+--
+-- Dumping data for table `WORKERS`
+--
+INSERT INTO WORKERS VALUES
+(1, 'Quincy', 'LANOIE', 0644477899, 'male', 1),
+(2, 'Fayette', 'BOURQUE', 0625144111, 'female', 1),
+(3, 'Danielle', 'CHICOINE', 0600702147, 'female', 1),
+(4, 'Dominique', 'LOUINEAUX', 0621212225, 'male', 1),
+(5, 'Angelette', 'SARRAZIN', 0658545232, 'female', 1),
+(6, 'Frontinos', 'SALOIS', 0606989120, 'male', 2),
+(7, 'Ansel', 'BOURGET', 0610203030, 'male', 2),
+(8, 'Soren', 'JOSSEAUME', 0744477001, 'male', 3),
+(9, 'Marsilius', 'PAQUIN', 0621730987, 'male', 4),
+(10, 'Eleonore', 'RIEL', 0663697120, 'female', 4),
+(11, 'Jerome', 'PERILLARD', 0700140141, 'male', 5),
+(12, 'Emmanuel', 'ROUSSEL', 0687546666, 'male', 8),
+(13, 'Yves', 'COUSTEAU', 0688723014, 'male', 10),
+(14, 'Zdenek', 'FRANCOEUR', 0784878180, 'male', 10),
+(15, 'Rabican', 'PARMENTIER', 0602227710, 'male', 10);
+
+--
+-- Table structure for table `DEGREE`
+--
+CREATE TABLE DEGREE
+(
+    no_degree INT(11) PRIMARY KEY NOT NULL,
+    lib_degree VARCHAR(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+--
+-- Dumping data for table `DEGREE`
+--
+INSERT INTO DEGREE VALUES
+(1, 'Brevet'),
+(2, 'Certificat d\'Aptitude Professionnelle'),
+(3, 'Certificat de Formation Générale'),
+(4, 'Mention Complémentaire MC5'),
+(5, 'Baccalaureat'),
+(6, 'Brevet des Métiers d\'Art'),
+(7, 'Brevet de Technicien Supérieur'),
+(8, 'Licence Professionnelle'),
+(9, 'Diplôme Certifié d\'Etat'),
+(10, 'Master');
+
+
+--
+-- Table structure for table `WORKERS_DEGREE`
+--
+CREATE TABLE WORKERS_DEGREE
+(
+    no_worker INT(11) NOT NULL,
+    no_degree INT(11) NOT NULL,
+    date_degree DATE DEFAULT NULL,
+    FOREIGN KEY (no_worker)REFERENCES workers(no_worker),
+    FOREIGN KEY (no_degree) REFERENCES degree(no_degree)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+--
+-- Dumping data for table `WORKERS_DEGREE`
+--
+INSERT INTO WORKERS_DEGREE VALUES
+(1, 1, '2010-06-12'),
+(1, 5, '2013-06-14'),
+(1, 8, '2018-06-09'),
+(2, 1, '2011-06-16'),
+(2, 2, '2014-07-08'),
+(3, 1, '2015-06-07'),
+(4, 1, '2009-06-05'),
+(5, 1, '2014-05-11'),
+(5, 3, '2017-06-07'),
+(6, 1, '2009-05-04'),
+(6, 5, '2012-07-03'),
+(6, 8, '2016-07-14'),
+(7, 1, '2006-07-11'),
+(7, 4, '2012-06-24'),
+(8, 1, '2012-07-07'),
+(8, 5, '2015-06-15'),
+(8, 8, '2018-07-10'),
+(8, 10, '2021-07-14'),
+(10, 1, '2012-07-16'),
+(11, 1, '2009-06-09'),
+(11, 3, '2012-06-11'),
+(11, 5, '2014-07-05'),
+(11, 6, '2012-06-11'),
+(11, 8, '2016-06-07'),
+(11, 9, '2020-06-11'),
+(12, 1, '2009-06-05'),
+(12, 2, '2012-07-09'),
+(12, 5, '2016-07-29'),
+(12, 7, '2020-07-02'),
+(13, 1, '2011-07-01'),
+(14, 1, '2007-06-29'),
+(15, 1, '2012-06-14');
+
+--
+-- Table structure for table `REST_TABLE`
+--
+CREATE TABLE REST_TABLE
+(
+    no_table INT(11) PRIMARY KEY NOT NULL,
+    table_pos VARCHAR(255) DEFAULT NULL,
+    capacity INT(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `REST_TABLE`
+--
+INSERT INTO REST_TABLE VALUES
+(1, 'Basement', 5),
+(2, 'Basement', 5),
+(3, 'Basement', 5),
+(4, 'Basement', 4),
+(5, 'Basement', 4),
+(6, 'Ground floor', 15),
+(7, 'Ground floor', 10),
+(8, 'Ground floor', 8),
+(9, 'Ground floor', 8),
+(10, 'Ground floor', 6),
+(11, 'Ground floor', 5), 
+(12, 'Ground floor', 5),
+(13, 'Terrace', 6),
+(14, 'Terrace', 4),
+(15, 'Terrace', 2),
+(16, 'Terrace', 2),
+(17, 'Terrace', 2),
+(18, 'Terrace', 2),
+(19, 'Upstairs', 10),
+(20, 'Upstairs', 10);
+
+--
+-- Table structure for table `ORDERS`
+--
+CREATE TABLE ORDERS
+(
+    no_order INT(11) PRIMARY KEY NOT NULL,
+    date_order DATE NOT NULL,
+    time_order TIME NOT NULL,
+    no_worker INT(11) NOT NULL,
+    no_table INT(11) NOT NULL,
+    FOREIGN KEY (no_worker) REFERENCES workers(no_worker),
+    FOREIGN KEY (no_table) REFERENCES rest_table(no_table)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+--
+-- Dumping data for table `ORDERS`
+--
+INSERT INTO ORDERS VALUES
+(1, '2021-02-18', '06:34:48', 1, 7),
+(2, '2021-05-11', '15:38:47', 1, 17),
+(3, '2021-03-09', '14:14:05', 2, 8),
+(4, '2021-08-28', '11:17:45', 3, 20),
+(5, '2020-09-11', '17:55:59', 3, 13),
+(6, '2021-07-21', '18:07:14', 3, 20),
+(7, '2021-06-30', '15:34:41', 4, 4),
+(8, '2020-12-29', '14:26:57', 5, 2),
+(9, '2020-05-09', '18:55:34', 5, 15),
+(10, '2020-01-28', '12:47:44', 7, 14),
+(11, '2020-07-06', '22:53:29', 8, 4),
+(12, '2020-12-22', '09:00:17', 8, 9),
+(13, '2021-08-07', '14:41:58', 11, 5),
+(14, '2020-02-14', '10:36:51', 11, 20),
+(15, '2020-06-14', '19:00:56', 11, 8),
+(16, '2021-04-11', '13:33:04', 14, 17),
+(17, '2021-03-28', '22:17:35', 14, 10);
+
+--
+-- Table structure for table `DISHES_TYPES`
+--
+CREATE TABLE DISHES_TYPES (
+	no_type int(11) NOT NULL,
+	name_type varchar(255) DEFAULT NULL, 
+	PRIMARY KEY(no_type)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table 'DISHES_TYPES'
+--
+INSERT INTO DISHES_TYPES (no_type, name_type) VALUES
+(1, 'Pasta'),
+(2, 'Veggie'),
+(3, 'Meat'),
+(4, 'Sea food'),
+(5, 'Soup'),
+(6, 'Salad'),
+(7, 'Fish'),
+(8, 'Pizza'),
+(9, 'French dish'),
+(10, 'Spicy dish');
+
+
+--
+-- Tables structure for table 'DISHES_CARD'
+--
+CREATE TABLE DISHES_CARD (
+	no_dish int(11) NOT NULL,
+	lib_dish varchar(255) DEFAULT NULL,
+	price_dish int(11) NOT NULL,
+	no_type int(11) NOT NULL,
+	PRIMARY KEY(no_dish),
+	FOREIGN KEY(no_type) REFERENCES DISHES_TYPES(no_type)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table 'DISHES_CARD'
+--
+INSERT INTO DISHES_CARD (no_dish, lib_dish, price_dish, no_type) VALUES
+(1, 'Salmon fillet with baked potatoes', 15, 7),
+(2, 'Spaghetti Carbonara', 13, 1),
+(3, 'Ratatouille', 14, 2),
+(4, 'Bœuf Bourguignon', 12, 3),
+(5, 'Marinated mussels with french fries', 16, 4),
+(6, 'French onion soup', 11, 5),
+(7, 'Cassoulet', 12, 3),
+(8, 'Niçoise Salad', 10, 6),
+(9, 'four-cheese pizza', 16, 9),
+(10, 'French Baked Ham With Spiced Apples and Pears', 16, 9),
+(11, 'Chicken curry with rice', 17, 10),
+(12, 'Bolognese dough', 13, 1);
+
+
+--
+-- Tables structure for table 'ORDERS_DISHES'
+--
+CREATE TABLE ORDERS_DISHES (
+	no_order int(11) NOT NULL,
+	no_dish int(11) NOT NULL,
+	qty_dish int(11) NOT NULL,
+	FOREIGN KEY(no_order) REFERENCES ORDERS(no_order),
+	FOREIGN KEY(no_dish) REFERENCES DISHES_CARD(no_dish)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table 'ORDERS_DISHES'
+--
+INSERT INTO ORDERS_DISHES(qty_dish, no_order, no_dish) VALUES
+(2, 1, 2),
+(3, 2, 5),
+(1, 3, 6),
+(4, 4, 7),
+(3, 5, 12),
+(2, 6, 4),
+(1, 7, 3),
+(4, 8, 1),
+(2, 9, 11),
+(3, 10, 10),
+(5, 11, 8),
+(2, 12, 9),
+(4, 13, 5),
+(3, 14, 7),
+(4, 15, 2),
+(1, 16, 12),
+(2, 17, 2);
+
+--
+-- Tables structure for table 'NUTRIENTS'
+--
+CREATE TABLE NUTRIENTS (
+  no_nutrient int(11) NOT NULL,
+  name_nutrient varchar(255) DEFAULT NULL,
+  PRIMARY KEY(no_nutrient)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table 'NUTRIENTS'
+--
+INSERT INTO NUTRIENTS (no_nutrient, name_nutrient) VALUES
+(1, 'Protein'),
+(2, 'Carbohydrates'),
+(3, 'Fat'),
+(4, 'Sodium'),
+(5, 'Vitamins'),
+(6, 'Water'),
+(7, 'Calcium'),
+(8, 'Sugar'),
+(9, 'Magnesium'),
+(10, 'Chloride');
+
+--
+-- Tables structure for table 'MENUS_CARD'
+--
+CREATE TABLE MENUS_CARD (
+  no_menu int(11) NOT NULL,
+  lib_menu varchar(255) DEFAULT NULL,
+  price_menu int(11) NOT NULL,
+  PRIMARY KEY(no_menu)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table 'MENUS_CARD'
+--
+INSERT INTO MENUS_CARD (no_menu, lib_menu, price_menu) VALUES
+(1, 'Discovery menu', 25),
+(2, 'Gourmet menu', 30),
+(3, 'Kid menu', 15),
+(4, 'Menu appetizer + dish', 18),
+(5, 'Menu dish + dessert', 18),
+(6, 'Express menu', 15),
+(7, 'Pasta menu', 20),
+(8, 'Pizza menu', 20),
+(9, 'Vegetarian menu', 22),
+(10, 'Fancy menu', 40);
+
+--
+-- Tables structure for table 'DISHES_MENUS'
+--
+CREATE TABLE DISHES_MENUS (
+  no_menu int(11) NOT NULL,
+  no_dish int(11) NOT NULL,
+  FOREIGN KEY(no_menu) REFERENCES MENUS_CARD(no_menu),
+  FOREIGN KEY(no_dish) REFERENCES DISHES_CARD(no_dish)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table 'DISHES_MENUS'
+--
+INSERT INTO DISHES_MENUS (no_menu, no_dish) VALUES
+(1, 1),
+(1, 4),
+(1, 5),
+(2, 10),
+(2, 11),
+(2, 1),
+(3, 9),
+(3, 12),
+(3, 2),
+(4, 6),
+(4, 10),
+(4, 11),
+(5, 6),
+(5, 10),
+(5, 11),
+(6, 6),
+(6, 2),
+(7, 2),
+(7, 12),
+(8, 9),
+(9, 3),
+(10, 1),
+(10, 4),
+(10, 5),
+(10, 6),
+(10, 7),
+(10, 8),
+(10, 10),
+(10, 11);
+
+--
+-- Tables structure for table 'MENUS_NUTRIENTS'
+--
+CREATE TABLE MENUS_NUTRIENTS (
+  no_menu int(11) NOT NULL,
+  no_nutrient int(11) NOT NULL,
+  FOREIGN KEY(no_menu) REFERENCES MENUS_CARD(no_menu),
+  FOREIGN KEY(no_nutrient) REFERENCES NUTRIENTS(no_nutrient)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table 'MENUS_NUTRIENTS'
+--
+INSERT INTO MENUS_NUTRIENTS (no_menu, no_nutrient) VALUES
+(1, 1),
+(1, 5),
+(2, 8),
+(2, 9),
+(3, 3),
+(3, 4),
+(4, 4),
+(4, 7),
+(5, 5),
+(5, 8),
+(5, 9),
+(6, 6),
+(6, 3),
+(6, 7),
+(7, 1),
+(7, 2),
+(8, 2),
+(8, 6),
+(9, 4),
+(9, 2),
+(10, 3),
+(10, 1),
+(10, 8),
+(10, 4);
+
+
+--
+-- Tables structure for table 'ORDERS_MENUS'
+--
+CREATE TABLE ORDERS_MENUS (
+  no_order int(11) NOT NULL,
+  no_menu int(11) NOT NULL,
+  qty_menu int(11) NOT NULL,
+  FOREIGN KEY(no_menu) REFERENCES MENUS_CARD(no_menu),
+  FOREIGN KEY(no_order) REFERENCES ORDERS(no_order) 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table 'ORDERS_MENUS'
+--
+
+INSERT INTO ORDERS_MENUS (qty_menu, no_order, no_menu) VALUES
+(2, 1, 2),
+(3, 2, 4),
+(1, 3, 6),
+(4, 4, 7),
+(3, 5, 8),
+(2, 6, 5),
+(1, 7, 9),
+(4, 8, 10),
+(2, 9, 1),
+(3, 10, 3),
+(3, 11, 5),
+(4, 12, 6),
+(2, 13, 8),
+(1, 14, 3),
+(5, 15, 2),
+(2, 16, 1),
+(3, 17, 10);
+
+--
+-- Table structure for table `COFFEE_CARD`
+--
+CREATE TABLE COFFEE_CARD
+(
+    no_coffee INT(11) PRIMARY KEY NOT NULL,
+    name_coffee VARCHAR(255) DEFAULT NULL,
+    price_coffee FLOAT(8,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+--
+-- Dumping data for table `COFFEE_CARD`
+--
+INSERT INTO COFFEE_CARD VALUES
+(1, 'Classique', 0.25),
+(2, 'Espresso', 1.30),
+(3, 'Ristretto', 1.50),
+(4, 'Lungo', 1.90),
+(5, 'Gommosa', 1.00),
+(6, 'Con Hielo', 1.15),
+(7, 'Doppio', 2.10),
+(8, 'Espresso con panna', 1.75),
+(9, 'Espresso Romano', 1.40),
+(10, 'Guillermo', 2.50),
+(11, 'Zorro', 2.20),
+(12, 'Latte', 1.80),
+(13, 'Cortado', 1.25),
+(14, 'Cappucino', 2.30),
+(15, 'Macchiato', 1.90),
+(16, 'Red Eye', 1.70);
+
+
+--
+-- Table structure for table `ORDERS_COFFEES`
+--
+CREATE TABLE ORDERS_COFFEES
+(
+    no_order INT(11) NOT NULL,
+    no_coffee INT(11) NOT NULL,
+    qty_coffee INT(11) NOT NULL,
+    FOREIGN KEY (no_order)REFERENCES ORDERS(no_order),
+    FOREIGN KEY (no_coffee) REFERENCES COFFEE_CARD(no_coffee)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+--
+-- Dumping data for table `ORDERS_COFFEES`
+--
+INSERT INTO ORDERS_COFFEES VALUES
+(1, 8, 3),
+(1, 14, 3),
+(2, 16, 1),
+(4, 12, 1),
+(4, 2, 4),
+(5, 14, 1),
+(8, 12, 1),
+(9, 5, 3),
+(11, 7, 1),
+(11, 4, 1),
+(15, 3, 1),
+(16, 7, 1),
+(17, 12, 2),
+(17, 1, 2);
+
+
+--
+-- Table structure for table `DRINKS_CARD`
+--
+CREATE TABLE DRINKS_CARD
+(
+    no_drink INT(11) PRIMARY KEY NOT NULL,
+    name_drink VARCHAR(255) DEFAULT NULL,
+    price_drink FLOAT(8,2) DEFAULT NULL,
+    no_supplier INT(11) NOT NULL,
+    FOREIGN KEY (no_supplier)REFERENCES SUPPLIERS(no_supplier)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+--
+-- Dumping data for table `DRINKS_CARD`
+--
+INSERT INTO DRINKS_CARD VALUES
+(1, 'COCA-COLA ENERGY 50CL', 1.37, 1),
+(2, 'COCA-COLA ENERGY 33ML', 1.30, 1),
+(3, 'COCA-COLA ENERGY SANS SUCRE 30ML', 1.46, 2),
+(4, 'COCA-COLA REGULAR 33ML', 0.99, 2),
+(5, 'COCA-COLA LIGHT 30ML', 1.38, 3),
+(6, 'FANTA ORANGE 30CL', 0.79, 3),
+(7, 'FANTA CITRON 33CL', 1.27, 3),
+(8, 'FANTA MANGUE 33CL', 1.69, 4),
+(9, 'FANTA POMME 50CL', 1.37, 4),
+(10, 'FANTA AGRUMES 33ML', 1.05, 5),
+(11, 'POWERADE ICE STORM 50CL', 2.20, 6),
+(12, 'POWERADE CITRON 33CL', 1.94, 7),
+(13, 'POWERADE CERISE', 1.38, 7),
+(14, 'SPRITE 30CL', 1.15, 8),
+(15, 'CAPRISUN 20CL', 0.68, 9),
+(16, 'EAU MINERALE 50CL', 1.66, 10);
+
+
+--
+-- Table structure for table `ORDERS_DRINKS`
+--
+CREATE TABLE ORDERS_DRINKS
+(
+    no_order INT(11) NOT NULL,
+    no_drink INT(11) NOT NULL,
+    qty_drink INT(11) DEFAULT NULL,
+    FOREIGN KEY (no_order)REFERENCES ORDERS(no_order),
+    FOREIGN KEY (no_drink) REFERENCES DRINKS_CARD(no_drink)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+--
+-- Dumping data for table `ORDERS_DRINKS`
+--
+INSERT INTO ORDERS_DRINKS VALUES
+(3, 7, 1),
+(5, 16, 2),
+(5, 4, 1),
+(6, 11, 3),
+(8, 1, 2),
+(8, 5, 1),
+(10, 16, 2),
+(11, 16, 1),
+(12, 16, 1),
+(12, 12, 3),
+(14, 8, 1),
+(14, 3, 1);
+
+--
+-- Table structure for table `WINES_CARD`
+--
+CREATE TABLE WINES_CARD
+(
+    no_wine INT(11) PRIMARY KEY NOT NULL,
+    name_wine VARCHAR(255) DEFAULT NULL,
+    vintage VARCHAR(4) NOT NULL,
+    wine_selling_price FLOAT(8,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `WINES_CARD`
+--
+INSERT INTO WINES_CARD VALUES
+(1, 'BEAUJOLAIS SUPERIEUR', 1903, 12.85),
+(2, 'BORDEAUX CLAIRET ROSE', 1934, 16.78),
+(3, 'BORDEAUX COTES DE FRANCE', 1833, 20.98),
+(4, 'BATOREUS SAUVIGNON BLANC', 1900, 7.30),
+(5, 'CHIROUBLES', 1906, 10.23),
+(6, 'DUCHE UZES', 1970, 18.13),
+(7, 'FRONSAC', 1892, 10.50),
+(8, 'CHATEAU TALBOT', 2018, 74.49),
+(9, 'CHATEAU BRISSON', 2016, 11.08),
+(10, 'CHATEAU DONISSAN', 2016, 14.13),
+(11, 'ROJA CRIANZA', 2018, 10.99),
+(12, 'LYNSOLENCE', 2015, 35.00),
+(13, 'GRANDE SELECTION', 1968, 15.52),
+(14, 'BORDEAUX ARUMS DE LAGRANGE', 2018, 20.66);
+
+--
+-- Table structure for table `ORDERS_WINES`
+--
+CREATE TABLE ORDERS_WINES
+(
+    no_order INT(11) NOT NULL,
+    no_wine INT(11) NOT NULL,
+    qty_wine INT(11) DEFAULT NULL,
+    FOREIGN KEY (no_order)REFERENCES ORDERS(no_order),
+    FOREIGN KEY (no_wine) REFERENCES WINES_CARD(no_wine)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+--
+-- Dumping data for table `ORDERS_WINES`
+--
+INSERT INTO ORDERS_WINES VALUES
+(2, 8, 1),
+(3, 4, 2),
+(6, 11, 1),
+(6, 4, 1),
+(7, 10, 1),
+(8, 8, 2),
+(8, 14, 1),
+(9, 1, 2),
+(9, 7, 1),
+(9, 5, 1),
+(10, 6, 3),
+(10, 13, 1),
+(12, 7, 1),
+(12, 2, 1),
+(15, 12, 1),
+(15, 10, 2),
+(17, 7, 2), 
+(17, 9, 1),
+(17, 3, 1);
+
+--
+-- Table structure for table `SHELF`
+--
+CREATE TABLE SHELF
+(
+    no_shelf INT(11) PRIMARY KEY NOT NULL,
+    shelf_name VARCHAR(255) DEFAULT NULL,
+    shelf_surface INT(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `SHELF`
+--
+INSERT INTO SHELF VALUES
+(1, 'white', 6),
+(2, 'red', 4),
+(3, 'rosé', 12),
+(4, 'fortified', 8),
+(5, 'dessert',11),
+(6, 'sweet', 5),
+(7, 'fruity', 2),
+(8, 'slightly acid', 5),
+(9, 'light', 4),
+(10, 'sparkling', 6);
+
+--
+-- Table structure for table `BOTTLES`
+--
+CREATE TABLE BOTTLES
+(
+    no_bottle INT(11) PRIMARY KEY NOT NULL,
+    date_purch DATE,
+    purch_price FLOAT(8,2) NOT NULL,
+    no_wine INT(11) NOT NULL,
+    no_winegrower INT(11) NOT NULL,
+    no_shelf INT(11) NOT NULL,
+    FOREIGN KEY (no_wine)REFERENCES WINES_CARD(no_wine),
+    FOREIGN KEY (no_winegrower) REFERENCES WINEGROWERS(no_winegrower),
+    FOREIGN KEY (no_shelf) REFERENCES SHELF(no_shelf)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `BOTTLES`
+--
+INSERT INTO BOTTLES VALUES
+(1, '2018-03-31', 5.00, 4, 9, 1),
+(2, '2020-06-16', 9.35, 9, 2, 8),
+(3, '2019-02-14', 17.60, 14, 9, 2),
+(4, '2019-08-09', 10.00, 11, 1, 2),
+(5, '2020-02-08', 68.44, 8, 5, 10),
+(6, '2018-04-24', 10.35, 1, 8, 4),
+(7, '2019-05-11', 15.00, 6, 1, 9),
+(8, '2019-08-09', 11.00, 9, 6, 8),
+(9, '2019-06-14', 12.68, 14, 2, 2),
+(10, '2021-01-27', 13.00, 2, 9, 3),
+(11, '2020-11-24', 8.50, 5, 4, 6),
+(12, '2020-10-30', 13.05, 10, 11, 8),
+(13, '2020-09-03', 30.78, 12, 3, 5),
+(14, '2019-09-06', 67.00, 8, 8, 10),
+(15, '2020-09-03', 19.5, 3, 7, 2),
+(16, '2018-09-14', 8.5, 7, 10, 7),
+(17, '2019-06-14', 12.99, 13, 12, 8);
+
+--
+-- Table structure for table `MONTHLY_SALES`
+--
+CREATE TABLE MONTHLY_SALES
+(
+    months INT(11) NOT NULL,
+    years INT(11) NOT NULL,
+    sales_amount FLOAT(8,2) NOT NULL,
+    no_bottle INT(11) NOT NULL,
+    PRIMARY KEY (no_bottle, months, years),
+    FOREIGN KEY (no_bottle) REFERENCES BOTTLES(no_bottle)
+);
+
+--
+-- Dumping data for table `MONTHLY_SALES`
+--
+
+INSERT INTO MONTHLY_SALES VALUES
+(01, 2020, 64.25, 6),
+(03, 2020, 100.68, 10),
+(04, 2020, 41.96, 15),
+(11, 2020, 471.38, 7),
+(12, 2020, 81.84, 11),
+(01, 2021, 102.2, 1),
+(02, 2021, 189, 16),
+(03, 2021, 372.45, 5),
+(04, 2021, 376.72, 2),
+(05, 2021, 141.3, 12);
+
+--------------------------------------------------------------------------
+-- Queries solutions
+--------------------------------------------------------------------------
+
+--
+-- 5 basic queries
+--
+
+-- 1: Display all the names of the workers.
+SELECT firstname, surname 
+	FROM workers;
+
+-- 2: Display all the properties of the shelf.
+SELECT * 
+	FROM shelf;
+
+-- 3: Display all the names of the drinks.
+SELECT name_drink
+	FROM drinks_card;
+
+-- 4: Display the differents degrees of the workers.
+SELECT lib_degree
+	FROM degree;
+ 
+-- 5: Display the number of places of each table. 
+SELECT capacity, no_table 
+	FROM rest_table;
+		
+--
+-- 5 WHERE clause queries
+--
+
+-- 1: Display the name of the drinks whose price is higher than 1€.
+SELECT name_drink
+	FROM drinks_card
+	WHERE price_drink > 1;
+
+-- 2: Display the bottle numbers whose sales amount are higher than 200€.
+SELECT no_bottle
+	FROM monthly_sales
+	WHERE sales_amount > 200;
+
+-- 3: Display the type of the dish #2.
+SELECT name_type 
+	FROM dishes_types 
+	WHERE no_type = 2;
+
+-- 4: Display the number and the name of menus whose price is between 15€ and 20€.
+SELECT no_menu, lib_menu 
+	FROM menus_card 
+	WHERE price_menu 
+	BETWEEN 15 AND 20;
+
+-- 5: Display bottles sold in March 2020.
+SELECT no_bottle 
+	FROM monthly_sales 
+	WHERE years=2020 AND months=03;
+
+--
+-- 5 ORDER BY queries
+--
+
+-- 1 : Display the list of dishes sorted by prices in descending order.
+SELECT * 
+	FROM dishes_card 
+	ORDER BY price_dish DESC;
+
+-- 2 : Display the list of menus sorted by menu number in ascending order.
+SELECT *
+	FROM menus_card
+	ORDER BY no_menu;
+
+-- 3 : Display the name of the coffees sorted by prices in ascending order.
+SELECT name_coffee, price_coffee 
+	FROM coffee_card 
+	ORDER BY price_coffee;
+
+-- 4 : Display the phone of the workers sorted by workers' firstname.
+SELECT phone, surname
+	FROM workers 
+	ORDER BY surname;
+
+-- 5 : Display the order number sorted by order's date.
+SELECT no_order, date_order
+	FROM orders
+	ORDER BY date_order;
+	
+--
+-- 5 Multi-Table queries
+--
+
+-- 1 : Display the city of the worker #5.
+SELECT city
+	FROM adress a, workers w
+	WHERE a.no_adress=w.no_adress AND no_worker=5;
+
+-- 2 : Display the date degree of all the male workers.
+SELECT date_degree, gender
+	FROM workers w, workers_degree wd
+	WHERE gender="male" AND w.no_worker=wd.no_worker;
+
+-- 3 : Display the nutrients name of the menu #8, the pizza menu.
+SELECT name_nutrient
+	FROM menus_nutrients mn, nutrients n
+	WHERE no_menu=8 AND mn.no_nutrient=n.no_nutrient;
+
+-- 4 : Display the type name of the dish #11.
+SELECT name_type
+	FROM dishes_card dm, dishes_types dt
+	WHERE no_dish=11 AND dm.no_type=dt.no_type;
+
+-- 5 : Display the shelf name of the bottle #6.
+SELECT shelf_name
+	FROM shelf s, bottles b
+	WHERE no_bottle=6 AND s.no_shelf=b.no_shelf;
+
+--
+-- 5 Queries with numeric expressions and functions
+--
+
+-- 1 Display the average price of Espresso coffees
+SELECT AVG(price_coffee) AS average_price
+	FROM COFFEE_CARD
+	WHERE name_coffee='Espresso';
+
+-- 2 Display the total capacity of the restaurant (total number of available places)
+SELECT SUM(rest_table.capacity) AS total_capacity
+	FROM rest_table;
+
+-- 3 Display the number, the position and the capacity of the table with the highest capacity
+SELECT no_table, table_pos, capacity
+	FROM rest_table
+	WHERE capacity = (SELECT MAX(capacity) 
+						FROM rest_table);
+
+-- 4 Display the names of drinks with a price lower than the average drinks price
+SELECT name_drink
+	FROM drinks_card
+	WHERE price_drink < (SELECT AVG(price_drink)
+							FROM drinks_card);
+
+-- 5 Display for wines produced after 2000, the current price and the price after a 20% discount
+SELECT name_wine, wine_selling_price, wine_selling_price*0.8 AS reduced_rate 
+	FROM wines_card
+	WHERE vintage > 2000;
+
+--
+-- 5 GROUP BY queries
+--
+
+-- 1 Display the average table capacity by position
+SELECT table_pos, AVG(capacity)
+	FROM rest_table
+	GROUP BY table_pos;
+
+-- 2 Display the number of workers per gender
+SELECT gender, COUNT(no_worker)
+	FROM workers
+	GROUP BY gender;
+
+-- 3 Display the number of workers with 4 degrees at least
+SELECT w.no_worker, COUNT(no_degree)
+	FROM workers w, workers_degree wd
+    WHERE w.no_worker=wd.no_worker
+	GROUP BY(no_worker) 
+	HAVING COUNT(no_degree)>=4;
+
+-- 4 Display for each position, the position and the total capacity
+SELECT table_pos, SUM(capacity)
+	FROM rest_table
+	GROUP BY table_pos;
+
+-- 5 Display for each month regardless of the year, the total amount of sales
+SELECT months, SUM(sales_amount)
+	FROM monthly_sales
+	GROUP BY months;
+
+--
+-- 5 nested queries
+--
+
+-- 1. Show labels for dishes cheaper than cassoulet
+SELECT lib_dish 
+	FROM dishes_card 
+	WHERE price_dish < (SELECT price_dish 
+						FROM dishes_card 
+						WHERE lib_dish = 'cassoulet');
+
+-- 2. Show most expensive wine label
+SELECT name_wine 
+	FROM wines_card 
+	WHERE wine_selling_price = (SELECT MAX(wine_selling_price) 
+								FROM wines_card);
+
+-- 3. Display the list of workers who graduated in 2020
+SELECT * 
+	FROM workers 
+	WHERE no_worker in (SELECT no_worker 
+						FROM workers_degree 
+						WHERE date_degree LIKE '2020%');
+	 
+-- 4. Display the list of workers who live in the same street as suppliers
+SELECT surname, firstname 
+	FROM workers w 
+	JOIN adress a 
+	ON(w.no_adress = a.no_adress) 
+	AND a.street in (SELECT DISTINCT(street) 
+						FROM adress a 
+						JOIN suppliers s 
+						ON(a.no_adress = s.no_adress));
+						
+-- 5. Display the list of workers who do not live in the same street as winegrowers
+SELECT surname, firstname 
+	FROM workers w 
+	JOIN adress a 
+	ON(w.no_adress = a.no_adress) 
+	AND a.street NOT IN (SELECT DISTINCT(street) 
+							FROM adress a 
+							JOIN winegrowers wg 
+							ON(a.no_adress = wg.no_adress));
